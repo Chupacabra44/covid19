@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Vue</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <style>
+.subject {
+  font-size: 24px;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <span class="subject">{{ message }}</span> <br><br>
+    Global Total Confirmed:
+    {{ alfa }} <br><br>
+
+  </div>
+  <div id="app2">
+   Croatia New Confirmed
+    {{ beta }} <br><br>
+  </div>
+  <div id="app3">
+    Croatia New Recovered
+    {{ gama }} <br><br>
+  </div>
+  <div id="app4">
+    Croatia New Deaths
+    {{ delta }}
+  </div>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          message: 'Data for Global covid-19 and Croatia',
+          alfa: null
+
+        }
+      },
+      mounted() {
+        axios
+          .get('https://api.covid19api.com/summary')
+          .then(response => (this.alfa = response.data.Global.TotalConfirmed))
+
+      },
+
+    }),
+      new Vue({
+        el: '#app2',
+        data() {
+          return {
+            beta: null
+
+          }
+        },
+        mounted() {
+          axios
+            .get('https://api.covid19api.com/summary')
+            .then(response => (this.beta = response.data.Countries[41].NewConfirmed))
+
+        },
+
+      }),
+
+      new Vue({
+        el: '#app3',
+        data() {
+          return {
+            gama: null
+
+          }
+        },
+        mounted() {
+          axios
+            .get('https://api.covid19api.com/summary')
+            .then(response => (this.gama = response.data.Countries[41].NewRecovered))
+
+        },
+
+      }),
+      new Vue({
+        el: '#app4',
+        data() {
+          return {
+            delta: null
+
+          }
+        },
+        mounted() {
+          axios
+            .get('https://api.covid19api.com/summary')
+            .then(response => (this.delta = response.data.Countries[41].NewDeaths))
+
+        },
+
+      })
+  </script>
+</body>
+
+</html>
