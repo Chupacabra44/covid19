@@ -13,10 +13,10 @@ function init() {
 
     data = `
 
-<td>${data.Countries[14].NewConfirmed}</td>
-<td>${data.Countries[14].NewConfirmed}</td>
-<td>${data.Countries[14].NewConfirmed}</td>
-<td>${data.Countries[14].NewConfirmed}</td>
+<td>${data.Global.TotalConfirmed}</td>
+<td>${data.Countries[41].NewConfirmed}</td>
+<td>${data.Countries[41].NewRecovered}</td>
+<td>${data.Countries[41].NewDeaths}</td>
 `
 
     $("#data").html(data)
